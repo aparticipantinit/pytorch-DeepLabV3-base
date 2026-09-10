@@ -1,0 +1,81 @@
+GPUS: [ 0 ]
+LOG_DIR: 'log/'
+DATA_DIR: ''
+OUTPUT_DIR: 'output/'
+WORKERS: 0
+PRINT_INFO: true
+PRINT_FREQ: 2
+PRINT_LOG_INFO: false
+
+MODEL:
+  NAME: my_model
+  IMAGE_SIZE:
+    - 512
+    - 512
+
+CUDNN:
+  BENCHMARK: true
+  DETERMINISTIC: false
+  ENABLED: true
+DATASET:
+  DATASET: 'crop_image'
+  DATA_FORMAT: 'tif'
+  ROOT: 'dataset/'
+  TEST_SET: 'val'
+  TRAIN_SET: 'train'
+TEST:
+  BATCH_SIZE_PER_GPU: 16
+  MODEL_FILE: ''
+VALID:
+  DATASET: 'crop_image'
+  DATA_FORMAT: 'tif'
+  ROOT: 'dataset/'
+  TEST_SET: 'test'
+TRAIN:
+  BATCH_SIZE_PER_GPU: 10
+  CLEAR_CUDA_PER_EPOCH: 2
+  BEGIN_EPOCH: 0
+  END_EPOCH: 90
+  RESUME: true
+  LR_FACTOR: 0.7
+  EARLY_STOP: 30
+  SAVE_PER_EPOCH: 20
+  LOG_LOSS_PRE_EPOCH: 1
+  SAVE_LOSS_PER_EPOCH: 1
+  LOG_DIR: "log"
+  VALID_WITH_IOU: true
+  USE_PARALLELED: true
+  STEP_BY_SINGLE_EPOCH: false
+
+  RANDOM_CROP: true
+  RANDOM_AFFINE: true
+  RANDOM_HORIZONTAL_FLIP: true
+  RANDOM_VERTICAL_FLIP: true
+  RANDOM_ROTATION: true
+  RANDOM_AUTO_CONTRAST: true
+  ROTATION_RANGE: 90
+
+
+
+  LR_STEP:
+    - 10
+    - 15
+    - 20
+    - 25
+    - 28
+    - 35
+    - 40
+    - 52
+    - 59
+    - 65
+    - 68
+    - 69
+  OPTIMIZER: sgd
+  LR: 0.1
+  WD: 0.0003
+  MOMENTUM: 0.9
+  NESTEROV: true
+  RMSPROP_CENTERED: true
+  SHUFFLE: true
+DEBUG:
+  DEBUG: false
